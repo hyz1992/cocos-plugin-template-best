@@ -29,7 +29,7 @@
 ##  🖼️ 功能演示
 
 * 热重载示例
-![热重载.gif](./imgs/editor_func.gif)
+![热重载.gif](./imgs/hot_reload.gif)
 
 *  编辑器接口能力示例
 ![查询编辑器信息.gif](./imgs/editor_func.gif)
