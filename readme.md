@@ -29,10 +29,10 @@
 ##  🖼️ 功能演示
 
 * 热重载示例
-![热重载.gif](https://download.cocos.com/CocosStore/resource/8508ab3ca94a4fb79152f5c4f10e3a75/8508ab3ca94a4fb79152f5c4f10e3a75.gif)
+![热重载.gif](./imgs/editor_func.gif)
 
 *  编辑器接口能力示例
-![查询编辑器信息.gif](https://download.cocos.com/CocosStore/resource/5d70aa24e0144969981780d01ac87504/5d70aa24e0144969981780d01ac87504.gif)
+![查询编辑器信息.gif](./imgs/editor_func.gif)
 
 其中，调用编辑器接口实例如下，本质是再插件上下文中eval相关代码指令：
 ```typescript
