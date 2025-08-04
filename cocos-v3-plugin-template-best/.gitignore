@@ -1,0 +1,7 @@
+# Logs
+logs
+
+node_modules
+dist
+@types
+web

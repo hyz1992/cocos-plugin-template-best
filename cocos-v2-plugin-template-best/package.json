@@ -1,0 +1,15 @@
+{
+  "name": "cocos-v2-plugin-template-best",
+  "version": "0.0.1",
+  "description": "The package template for getting started.",
+  "author": "Cocos Creator",
+  "main": "main.js",
+  "main-menu": {
+    "i18n:MAIN_MENU.package.title/cocos-v2-plugin-template-best": {
+      "message": "cocos-v2-plugin-template-best:open"
+    }
+  },
+  "dependencies": {
+    "ws": "^8.18.3"
+  }
+}

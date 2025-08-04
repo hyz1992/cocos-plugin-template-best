@@ -1,0 +1,1 @@
+"use strict";module.exports={open_panel:"打开vue面板",description:"这是个打开外部vue项目的插件"};
