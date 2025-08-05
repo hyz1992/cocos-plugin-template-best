@@ -5,3 +5,5 @@ node_modules
 dist
 @types
 web
+package-lock.json
+tsconfig.tsbuildinfo

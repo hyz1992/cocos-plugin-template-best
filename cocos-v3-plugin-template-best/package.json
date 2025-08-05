@@ -9,7 +9,8 @@
     },
     "devDependencies": {
         "@types/node": "^24.1.0",
-        "@types/ws": "^8.18.1"
+        "@types/ws": "^8.18.1",
+        "typescript": "^5.9.2"
     },
     "contributions": {
         "menu": [
