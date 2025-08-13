@@ -13,7 +13,7 @@ let _bridgeServer = null;
 let _win = null
 
 function createElectronWindow(){
-    const pluginPath = path.join(Editor.Project.path,"packages",packageJSON.name)
+    const pluginPath = __dirname
     _win = new electron.BrowserWindow({
         width: 960,
         height: 640,
