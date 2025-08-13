@@ -87,3 +87,31 @@ function setGlobalConstParam(){
     }
     _win.webContents.send('init-plugin-const-param', obj);
 }
+
+function logToFile(...args) {
+    const message = args.join(' ');
+    Editor.log(...args)
+    
+    const pluginPath = path.join(Editor.Project.path,"extensions",packageJSON.name)
+    // 固定日志文件路径
+    const logFilePath = path.join(pluginPath, "app.log");
+
+    // 确保目录存在
+    const dir = path.dirname(logFilePath);
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+    }
+
+    // 时间戳
+    const ts = new Date()
+        .toISOString()
+        .replace('T', ' ')
+        .replace(/\..+/, ''); // yyyy-MM-dd hh:mm:ss
+
+    // 追加写入
+    try {
+        fs.appendFileSync(logFilePath, `${ts}: ${message}\n`, { encoding: 'utf8' });
+    } catch (e) {
+        Editor.log('写入日志失败:', e);
+    }
+}
