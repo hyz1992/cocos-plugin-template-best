@@ -25,6 +25,11 @@
                 "methods": [
                     "openPanel"
                 ]
+            },
+            "restart-panel": {
+                "methods": [
+                    "restartPanel"
+                ]
             }
         }
     },

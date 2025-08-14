@@ -10,6 +10,12 @@ export const methods: { [key: string]: (...any: any) => any } = {
         console.log("点击打开面板")
         createElectronWindow()
     },
+    restartPanel() {
+        setTimeout(function(){
+            console.log("点击重启")
+            createElectronWindow()
+        },1000*0.1)
+    }
 };
 
 /**

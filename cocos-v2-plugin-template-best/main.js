@@ -21,5 +21,11 @@ module.exports = {
       
 
     },
+    'restart-panel' () {
+      setTimeout(function(){
+        console.log("点击重启")
+        createElectronWindow()
+      },1000*0.1)
+    }
   },
 };

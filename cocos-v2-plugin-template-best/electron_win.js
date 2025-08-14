@@ -23,7 +23,10 @@ function createElectronWindow(){
             preload: path.join(pluginPath, 'preload.js'),
             contextIsolation: true,
             nodeIntegration: false,
-            sandbox: false
+            sandbox: false,
+            // spellcheck: false,
+            // webSecurity: false,
+            // allowRunningInsecureContent: true
         }
     })
     _win.once('ready-to-show', async () => {
@@ -54,9 +57,17 @@ function createElectronWindow(){
 
     // 监听 F12 键，打开 DevTools
     _win.webContents.on('before-input-event', (event, input) => {
-        if (input.type === 'keyDown' && input.key === 'F12') {
-            _win.webContents.openDevTools();
-            event.preventDefault();
+        if (input.type === 'keyDown') {
+            if(input.key === 'F12'){
+                _win.webContents.openDevTools();
+                event.preventDefault();
+            }else if(input.key === 'F5'){
+                //TODO 关闭弹窗
+                _win.close();
+                _win = null;
+                Editor.Ipc.sendToMain(`${getPluginName()}:restart-panel`)
+                event.preventDefault();
+            }
         }
     });
 }
@@ -75,18 +86,31 @@ function findAvailablePort(startPort = 7500){
     });
 }
 
+function getPluginName(){
+    return packageJSON.name
+}
+
+function getCurPluginPath(){
+    const pluginPath = path.join(Editor.Project.path,"extensions",packageJSON.name)
+    return pluginPath
+}
+
 /**
  * 通过preload.js传递一些外部的全局变量给vue端
  */
 function setGlobalConstParam(){
     const projPath = Editor.Project.path
-    const pluginPath = path.join(Editor.Project.path,"extensions",packageJSON.name)
+    const pluginPath = getCurPluginPath()
     const cocosVer = Editor.App.version
+    const pluginName = getPluginName()
+    const tmpDir = Editor.Project.tmpDir;
 
     const obj = {
         projPath,
         pluginPath,
-        cocosVer
+        cocosVer,
+        pluginName,
+        tmpDir
     }
     _win.webContents.send('init-plugin-const-param', obj);
 }
