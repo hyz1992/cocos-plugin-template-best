@@ -45,7 +45,8 @@ export function createElectronWindow(){
             _bridgeServer.close()
         }
     })
-    if(true){
+    const isDev = false;//开发阶段，建议置为true,以享受热重载
+    if(isDev){
         _win.loadURL('http://localhost:5173/');
     }else{
         const filePath = path.join(pluginPath,"web/index.html")
