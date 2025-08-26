@@ -10,7 +10,7 @@
 
 ## ✨ 选择本插件模板的理由
 
-• 极致开发体验：纯 Vue + Vite 开发，享受现代前端工程化红利（HMR 热重载、ES6+ 语法、TypeScript 支持）。  
+• 极致开发体验：纯 Vue + Vite 开发，享受现代前端工程化红利（HMR 热重载、断点调试）。  
 
 • 丰富的 UI 生态：直接调用 Vue 生态海量 UI 组件库（Element Plus、Naive UI 等），告别原生 UI 组件的局限性。  
 
@@ -22,17 +22,23 @@
 唯一限制是无法直接使用 Cocos 编辑器原生 UI 组件
 
 ## 开源
+
 模板代码已开源，欢迎star： [Github](https://github.com/hyz1992/cocos-plugin-template-best.git )
 
 您也可以选择在此购买插件，请作者吃碗猪脚饭： [Cocos Store](https://store.cocos.com/app/detail/8016 )
 
 ##  🖼️ 功能演示
 
-* 热重载示例
+* **热重载示例**
 ![热重载.gif](./imgs/hot_reload.gif)
 
-*  编辑器接口能力示例
+*  **断点调试**
+跟chrome一样的使用方式，点击F12即打开DevTools，支持在.vue和.ts中进行断点调试
+![断点tiaoshi.png](./imgs/F12.png)
+
+*  **编辑器接口能力示例**
 ![查询编辑器信息.gif](./imgs/editor_func.gif)
+
 
 其中，调用编辑器接口实例如下，本质是再插件上下文中eval相关代码指令：
 ```typescript
@@ -102,20 +108,29 @@ cocos-v2-plugin-template-best/
 2. 安装依赖
 
 下载模板后，进入 vite-vue-proj 目录（插件核心源码目录）：  
+
+```bash
 cd vite-vue-proj
 npm install  # 安装 Vue 项目依赖
+```
 
 
 3. 开发模式（热重载）
 
-启动 Vue 项目开发服务器，享受实时预览：  
+启动 Vue 项目开发服务器，享受实时预览： 
+```bash 
+cd vite-vue-proj
 npm run dev  # 启动 HMR 热重载
+```
 
 
 4. 发布准备
 
 构建生产环境代码（生成压缩后的静态网页）：  
+```bash
+cd vite-vue-proj
 npm run build  # 输出至 ../web 目录（发布时需打包此目录）
+```
 
 
 5. 关键配置（必看！）
@@ -123,14 +138,15 @@ npm run build  # 输出至 ../web 目录（发布时需打包此目录）
 发布前需修改 Electron 窗口加载代码，切换「开发模式」与「发布模式」的加载方式：  
 在 electron_win.ts（v3）或 electron_win.js（v2）中：  
 ```js
-// 开发模式：加载 Vue 本地服务（热重载）
-if (false) {
+// 开发阶段，建议置为true,以享受热重载
+const isDev = false;
+if (isDev ) {
+  //开发模式：加载 Vue 本地服务（热重载）
   _win.loadURL('http://localhost:5173/');
-} 
-// 发布模式：加载本地构建的静态网页（打包后）
-else {
+} else {
+  // 发布模式：加载本地构建的静态网页（打包后）
   const filePath = path.join(pluginPath, "web/index.html");
-  _win.loadFile(filePath);  // 关键修改！
+  _win.loadFile(filePath);
 }
 ```
 
